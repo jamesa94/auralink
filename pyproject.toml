@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "auralink"
+description = "Bridge audio encoders to LLMs for audio captioning and sound-event understanding"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+authors = [{ name = "Qu Wang" }]
+keywords = [
+    "audio-captioning",
+    "sound-event-detection",
+    "audio-language-model",
+    "pytorch",
+    "multimodal",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Sound/Audio :: Analysis",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "torch>=2.1",
+    "numpy>=1.23",
+    "pyyaml>=6.0",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+hf = ["transformers>=4.38", "safetensors>=0.4"]
+audio = ["soundfile>=0.12"]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "coverage[toml]>=7.3",
+    "ruff>=0.4",
+    "mypy>=1.8",
+    "pre-commit>=3.5",
+]
+
+[project.urls]
+Homepage = "https://github.com/jamesa94/auralink"
+Repository = "https://github.com/jamesa94/auralink"
+Issues = "https://github.com/jamesa94/auralink/issues"
+
+[project.scripts]
+auralink = "auralink.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["auralink*"]
+
+[tool.setuptools.dynamic]
+version = { attr = "auralink._version.__version__" }
