@@ -1,0 +1,17 @@
+line-length = 100
+target-version = "py39"
+src = ["auralink", "tests"]
+
+[lint]
+select = ["E", "F", "W", "I", "UP", "B", "C4", "SIM", "RUF"]
+ignore = [
+    "B008",   # function call in argument defaults (used for nn defaults)
+    "SIM117", # nested with statements read fine here
+]
+
+[lint.per-file-ignores]
+"tests/*" = ["E501"]
+"examples/*" = ["E501"]
+
+[lint.isort]
+known-first-party = ["auralink"]
