@@ -82,7 +82,9 @@ class ConvTransformerEncoder(AudioEncoder):
             activation="gelu",
             norm_first=True,
         )
-        self.transformer = nn.TransformerEncoder(encoder_layer, num_layers=n_layers)
+        self.transformer = nn.TransformerEncoder(
+            encoder_layer, num_layers=n_layers, enable_nested_tensor=False
+        )
         self.norm = nn.LayerNorm(d_model)
 
     @property
