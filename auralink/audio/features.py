@@ -48,6 +48,14 @@ class LogMelFrontend(nn.Module):
     def output_dim(self) -> int:
         return self.n_mels
 
+    def num_frames(self, num_samples):
+        """Number of spectrogram frames produced for ``num_samples`` samples.
+
+        Accepts an int or a tensor of lengths; matches ``torch.stft`` with
+        ``center=True``.
+        """
+        return num_samples // self.hop_length + 1
+
     def forward(self, waveform: torch.Tensor) -> torch.Tensor:
         if waveform.dim() == 1:
             waveform = waveform.unsqueeze(0)
