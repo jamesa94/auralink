@@ -1,5 +1,10 @@
 # auralink
 
+[![CI](https://github.com/jamesa94/auralink/actions/workflows/ci.yml/badge.svg)](https://github.com/jamesa94/auralink/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/jamesa94/auralink/actions/workflows/codeql.yml/badge.svg)](https://github.com/jamesa94/auralink/actions/workflows/codeql.yml)
+[![Python](https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12-blue)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
 Bridge audio encoders to language models for **audio captioning** and
 **sound-event understanding** — in pure PyTorch, offline by default.
 
