@@ -30,7 +30,9 @@ class Trainer:
         grad_clip: Optional[float] = None,
         logger: Optional[Any] = None,
     ) -> None:
-        self.model = model.to(device)
+        # Typed as Any so static checkers accept the duck-typed training_step
+        # provided by AudioCaptioner / SoundEventTagger.
+        self.model: Any = model.to(device)
         self.optimizer = optimizer
         self.scheduler = scheduler
         self.device = device

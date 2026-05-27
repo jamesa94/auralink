@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import zlib
-from typing import Callable, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional
 
 import torch
 from torch.utils.data import Dataset
@@ -52,12 +52,10 @@ class CaptionDataset(Dataset):
     def __len__(self) -> int:
         return len(self.items)
 
-    def __getitem__(self, idx: int) -> Dict[str, object]:
+    def __getitem__(self, idx: int) -> Dict[str, Any]:
         item = self.items[idx]
         waveform = self.loader(item, self.sample_rate)
-        caption = (
-            item.captions[self.caption_index % len(item.captions)] if item.captions else ""
-        )
+        caption = item.captions[self.caption_index % len(item.captions)] if item.captions else ""
         ids = self.tokenizer.encode(caption)[: self.max_caption_len]
         return {
             "waveform": waveform,

@@ -11,7 +11,7 @@ import yaml
 T = TypeVar("T")
 
 
-def _from_dict(cls: Type[Any], data: Dict[str, Any]) -> Any:
+def _from_dict(cls: Any, data: Dict[str, Any]) -> Any:
     if not dataclasses.is_dataclass(cls):
         return data
     hints = typing.get_type_hints(cls)
@@ -19,13 +19,14 @@ def _from_dict(cls: Type[Any], data: Dict[str, Any]) -> Any:
     for field in dataclasses.fields(cls):
         if field.name not in data:
             continue
-        field_type = hints.get(field.name)
+        field_type: Any = hints.get(field.name)
         value = data[field.name]
         if dataclasses.is_dataclass(field_type) and isinstance(value, dict):
             kwargs[field.name] = _from_dict(field_type, value)
         else:
             kwargs[field.name] = value
-    return cls(**kwargs)
+    constructor: Any = cls
+    return constructor(**kwargs)
 
 
 def load_config(source: Union[str, Dict[str, Any]], config_cls: Type[T]) -> T:

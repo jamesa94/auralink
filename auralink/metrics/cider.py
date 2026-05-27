@@ -23,10 +23,12 @@ class CiderScorer:
         self.n = n
         self.sigma = sigma
 
-    def _document_frequency(self, refs_tokens: List[List[List[str]]]) -> Dict[Tuple[str, ...], float]:
+    def _document_frequency(
+        self, refs_tokens: List[List[List[str]]]
+    ) -> Dict[Tuple[str, ...], float]:
         df: Dict[Tuple[str, ...], float] = defaultdict(float)
         for refs in refs_tokens:
-            seen = set()
+            seen: set = set()
             for ref in refs:
                 for k in range(1, self.n + 1):
                     seen.update(get_ngrams(ref, k))
@@ -86,9 +88,7 @@ class CiderScorer:
             per_ref = []
             for ref in refs:
                 ref_vec, ref_norm = self._vectorize(ref, df, log_ref_count)
-                sim = self._similarity(
-                    cand_vec, cand_norm, ref_vec, ref_norm, len(cand), len(ref)
-                )
+                sim = self._similarity(cand_vec, cand_norm, ref_vec, ref_norm, len(cand), len(ref))
                 per_ref.append(sum(sim) / self.n)
             score = 10.0 * (sum(per_ref) / max(len(per_ref), 1))
             scores.append(score)
