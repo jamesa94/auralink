@@ -17,7 +17,7 @@ def resample(waveform: torch.Tensor, orig_sr: int, target_sr: int) -> torch.Tens
     if orig_sr == target_sr:
         return waveform
     x = waveform.reshape(1, 1, -1)
-    new_len = int(round(x.shape[-1] * target_sr / orig_sr))
+    new_len = round(x.shape[-1] * target_sr / orig_sr)
     y = torch.nn.functional.interpolate(x, size=new_len, mode="linear", align_corners=False)
     return y.reshape(-1)
 
