@@ -74,9 +74,7 @@ class AudioCaptioner(nn.Module):
         embeds = torch.cat([prefix, token_embeds], dim=1)
 
         if attention_mask is None:
-            attention_mask = torch.ones(
-                input_ids.shape, dtype=torch.bool, device=input_ids.device
-            )
+            attention_mask = torch.ones(input_ids.shape, dtype=torch.bool, device=input_ids.device)
         full_mask = torch.cat([prefix_mask, attention_mask.bool()], dim=1)
 
         logits = self.lm(inputs_embeds=embeds, attention_mask=full_mask)
@@ -111,13 +109,26 @@ class AudioCaptioner(nn.Module):
             ids = greedy_decode(self.lm, prefix, prefix_mask, bos, eos, cfg.max_new_tokens)
         elif cfg.strategy == "beam":
             ids = beam_search(
-                self.lm, prefix, prefix_mask, bos, eos, cfg.max_new_tokens,
-                cfg.beam_size, cfg.length_penalty,
+                self.lm,
+                prefix,
+                prefix_mask,
+                bos,
+                eos,
+                cfg.max_new_tokens,
+                cfg.beam_size,
+                cfg.length_penalty,
             )
         elif cfg.strategy == "sample":
             ids = sample_decode(
-                self.lm, prefix, prefix_mask, bos, eos, cfg.max_new_tokens,
-                cfg.temperature, cfg.top_k, cfg.top_p,
+                self.lm,
+                prefix,
+                prefix_mask,
+                bos,
+                eos,
+                cfg.max_new_tokens,
+                cfg.temperature,
+                cfg.top_k,
+                cfg.top_p,
             )
         else:
             raise ValueError(f"unknown decode strategy '{cfg.strategy}'")

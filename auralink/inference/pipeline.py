@@ -61,9 +61,7 @@ class TagPipeline:
         return wav.unsqueeze(0) if wav.dim() == 1 else wav
 
     @torch.no_grad()
-    def __call__(
-        self, audio: AudioInput, top_k: Optional[int] = None
-    ) -> List[Tuple[str, float]]:
+    def __call__(self, audio: AudioInput, top_k: Optional[int] = None) -> List[Tuple[str, float]]:
         wav = self._to_waveform(audio)
         probs, _ = self.model.predict(wav, threshold=self.threshold)
         probs = probs[0]

@@ -6,10 +6,10 @@ from auralink.training.schedule import get_warmup_cosine_scheduler
 from auralink.training.trainer import Trainer
 
 __all__ = [
-    "Trainer",
-    "caption_lm_loss",
-    "tagging_bce_loss",
-    "get_warmup_cosine_scheduler",
     "AverageMeter",
     "MetricTracker",
+    "Trainer",
+    "caption_lm_loss",
+    "get_warmup_cosine_scheduler",
+    "tagging_bce_loss",
 ]

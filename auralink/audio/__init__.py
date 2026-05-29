@@ -7,7 +7,7 @@ from auralink.audio.melscale import hz_to_mel, mel_filterbank, mel_to_hz
 __all__ = [
     "LogMelFrontend",
     "SpecAugment",
-    "mel_filterbank",
     "hz_to_mel",
+    "mel_filterbank",
     "mel_to_hz",
 ]

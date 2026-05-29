@@ -35,7 +35,9 @@ def test_captioner_loss_decreases_on_fixed_batch():
     set_seed(0)
     tok = CharTokenizer.default()
     model = build_captioner(_caption_cfg(), tok)
-    items = [ManifestItem(audio_path=f"m{i}.wav", captions=["a dog barks"], uid=str(i)) for i in range(4)]
+    items = [
+        ManifestItem(audio_path=f"m{i}.wav", captions=["a dog barks"], uid=str(i)) for i in range(4)
+    ]
     ds = CaptionDataset(items, tok, sample_rate=4000, max_caption_len=16)
     loader = DataLoader(ds, batch_size=4, collate_fn=CaptionCollator(tok.pad_id))
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)

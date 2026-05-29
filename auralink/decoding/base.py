@@ -47,9 +47,7 @@ def next_token_logits(
 
     attention_mask: Optional[torch.Tensor] = None
     if prefix_mask is not None:
-        token_mask = torch.ones(
-            generated_ids.shape, dtype=torch.bool, device=generated_ids.device
-        )
+        token_mask = torch.ones(generated_ids.shape, dtype=torch.bool, device=generated_ids.device)
         attention_mask = torch.cat([prefix_mask, token_mask], dim=1)
 
     logits = lm(inputs_embeds=embeds, attention_mask=attention_mask)

@@ -43,7 +43,9 @@ def downsample_lengths(lengths: torch.Tensor, factor: int) -> torch.Tensor:
     return torch.ceil(lengths.float() / float(factor)).long()
 
 
-def pad_to_multiple(x: torch.Tensor, multiple: int, dim: int = 1, value: float = 0.0) -> torch.Tensor:
+def pad_to_multiple(
+    x: torch.Tensor, multiple: int, dim: int = 1, value: float = 0.0
+) -> torch.Tensor:
     """Right-pad ``x`` along ``dim`` so that its size is a multiple of ``multiple``."""
     size = x.shape[dim]
     target = int(math.ceil(size / multiple) * multiple)

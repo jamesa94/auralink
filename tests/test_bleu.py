@@ -7,7 +7,9 @@ def test_identical_is_one():
 
 
 def test_disjoint_is_low():
-    score = sentence_bleu("a dog is barking loudly", ["totally different unrelated phrase here"], n=4)
+    score = sentence_bleu(
+        "a dog is barking loudly", ["totally different unrelated phrase here"], n=4
+    )
     assert score < 0.2
 
 
