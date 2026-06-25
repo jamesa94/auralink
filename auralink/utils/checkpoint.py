@@ -33,6 +33,6 @@ def load_state_into(
 ) -> nn.Module:
     """Load weights from a checkpoint into ``model`` in place."""
     checkpoint = load_checkpoint(path, map_location)
-    state = checkpoint["state_dict"] if "state_dict" in checkpoint else checkpoint
+    state = checkpoint.get("state_dict", checkpoint)
     model.load_state_dict(state, strict=strict)
     return model
