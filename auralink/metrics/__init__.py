@@ -12,16 +12,16 @@ from auralink.metrics.tagging import (
 from auralink.metrics.tokenize import normalize_caption, tokenize_caption
 
 __all__ = [
+    "average_precision",
+    "compute_cider",
+    "corpus_bleu",
+    "corpus_rouge_l",
     "evaluate_captions",
     "evaluate_tags",
-    "sentence_bleu",
-    "corpus_bleu",
-    "rouge_l",
-    "corpus_rouge_l",
-    "compute_cider",
-    "average_precision",
     "mean_average_precision",
-    "precision_recall_f1",
     "normalize_caption",
+    "precision_recall_f1",
+    "rouge_l",
+    "sentence_bleu",
     "tokenize_caption",
 ]

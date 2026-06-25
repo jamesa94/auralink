@@ -7,8 +7,8 @@ from auralink.decoding.sampling import sample_decode
 
 __all__ = [
     "DecodeConfig",
-    "next_token_logits",
-    "greedy_decode",
     "beam_search",
+    "greedy_decode",
+    "next_token_logits",
     "sample_decode",
 ]

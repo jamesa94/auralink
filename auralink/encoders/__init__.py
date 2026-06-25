@@ -6,9 +6,9 @@ from auralink.encoders.pooling import AttentivePool, MeanPool
 from auralink.encoders.registry import build_encoder, list_encoders, register_encoder
 
 __all__ = [
+    "AttentivePool",
     "AudioEncoder",
     "ConvTransformerEncoder",
-    "AttentivePool",
     "MeanPool",
     "build_encoder",
     "list_encoders",

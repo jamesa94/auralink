@@ -7,13 +7,13 @@ from auralink.data.ontology import SoundEventOntology
 from auralink.data.tagging_dataset import TaggingDataset
 
 __all__ = [
-    "ManifestItem",
-    "read_manifest",
-    "write_manifest",
-    "SoundEventOntology",
+    "CaptionCollator",
     "CaptionDataset",
+    "ManifestItem",
+    "SoundEventOntology",
     "TaggingDataset",
     "collate_captions",
     "collate_tags",
-    "CaptionCollator",
+    "read_manifest",
+    "write_manifest",
 ]

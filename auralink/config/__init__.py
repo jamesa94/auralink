@@ -9,12 +9,12 @@ from auralink.config.presets import (
 )
 
 __all__ = [
-    "load_config",
-    "dump_config",
+    "base_captioner_config",
     "config_to_dict",
+    "dump_config",
+    "get_preset",
+    "load_config",
     "merge_overrides",
     "tiny_captioner_config",
-    "base_captioner_config",
     "tiny_tagger_config",
-    "get_preset",
 ]

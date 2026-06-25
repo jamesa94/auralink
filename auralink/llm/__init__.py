@@ -11,10 +11,10 @@ from auralink.llm.registry import (
 from auralink.llm.tokenizer import CharTokenizer
 
 __all__ = [
+    "CharTokenizer",
+    "HFCausalLM",
     "LanguageModel",
     "TinyDecoderLM",
-    "HFCausalLM",
-    "CharTokenizer",
     "build_language_model",
     "list_language_models",
     "register_language_model",

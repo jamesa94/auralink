@@ -6,8 +6,16 @@ from auralink.data.collate import CaptionCollator, collate_captions, collate_tag
 
 def test_collate_captions_pads_audio_and_tokens():
     batch = [
-        {"waveform": synthetic_waveform(3000, seed=0), "input_ids": torch.tensor([1, 2, 3]), "caption": "x"},
-        {"waveform": synthetic_waveform(5000, seed=1), "input_ids": torch.tensor([1, 2, 3, 4, 5]), "caption": "y"},
+        {
+            "waveform": synthetic_waveform(3000, seed=0),
+            "input_ids": torch.tensor([1, 2, 3]),
+            "caption": "x",
+        },
+        {
+            "waveform": synthetic_waveform(5000, seed=1),
+            "input_ids": torch.tensor([1, 2, 3, 4, 5]),
+            "caption": "y",
+        },
     ]
     out = collate_captions(batch, pad_id=0)
     assert out["waveform"].shape == (2, 5000)
@@ -19,7 +27,13 @@ def test_collate_captions_pads_audio_and_tokens():
 
 def test_caption_collator_callable():
     collate = CaptionCollator(pad_id=0)
-    batch = [{"waveform": synthetic_waveform(1000, seed=0), "input_ids": torch.tensor([1, 2]), "caption": "z"}]
+    batch = [
+        {
+            "waveform": synthetic_waveform(1000, seed=0),
+            "input_ids": torch.tensor([1, 2]),
+            "caption": "z",
+        }
+    ]
     assert collate(batch)["input_ids"].shape == (1, 2)
 
 

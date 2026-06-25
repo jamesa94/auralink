@@ -14,13 +14,13 @@ from auralink.model.tagger import SoundEventTagger
 
 __all__ = [
     "AudioCaptioner",
+    "CaptionerConfig",
+    "ConnectorConfig",
+    "EncoderConfig",
+    "FrontendConfig",
+    "LMConfig",
     "SoundEventTagger",
+    "TaggerConfig",
     "build_captioner",
     "build_tagger",
-    "FrontendConfig",
-    "EncoderConfig",
-    "ConnectorConfig",
-    "LMConfig",
-    "CaptionerConfig",
-    "TaggerConfig",
 ]

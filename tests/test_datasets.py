@@ -10,7 +10,9 @@ from auralink.llm.tokenizer import CharTokenizer
 def _items():
     return [
         ManifestItem(audio_path="missing0.wav", captions=["a dog barks"], labels=["dog"], uid="0"),
-        ManifestItem(audio_path="missing1.wav", captions=["rain falling"], labels=["rain"], uid="1"),
+        ManifestItem(
+            audio_path="missing1.wav", captions=["rain falling"], labels=["rain"], uid="1"
+        ),
     ]
 
 
