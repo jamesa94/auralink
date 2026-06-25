@@ -75,7 +75,10 @@ class CiderScorer:
         refs_tokens = [[tokenize_caption(r) for r in refs] for refs in references_list]
         df = self._document_frequency(refs_tokens)
         num_samples = len(candidates)
-        log_ref_count = math.log(max(num_samples, 1))
+        # Use log(N + 1) rather than log(N): with a tiny corpus, n-grams that
+        # appear in every sample would otherwise get a zero idf and collapse the
+        # score to 0 even for an exact match.
+        log_ref_count = math.log(num_samples + 1)
 
         scores: List[float] = []
         for cand, refs in zip(cand_tokens, refs_tokens):
