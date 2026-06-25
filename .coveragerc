@@ -1,0 +1,15 @@
+[run]
+branch = True
+source = auralink
+omit =
+    auralink/llm/hf.py
+    auralink/cli.py
+
+[report]
+show_missing = True
+skip_covered = False
+exclude_lines =
+    pragma: no cover
+    raise NotImplementedError
+    if TYPE_CHECKING:
+    def __repr__
