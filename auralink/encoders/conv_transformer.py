@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import math
-from typing import Optional, Tuple
+from typing import List, Optional, Tuple
 
 import torch
 import torch.nn as nn
@@ -15,6 +15,8 @@ from auralink.utils.masking import lengths_to_mask
 
 class SinusoidalPositionalEncoding(nn.Module):
     """Fixed sinusoidal positional encoding added to the token sequence."""
+
+    pe: torch.Tensor
 
     def __init__(self, dim: int, max_len: int = 4096) -> None:
         super().__init__()
@@ -56,7 +58,7 @@ class ConvTransformerEncoder(AudioEncoder):
         self.conv_stride = conv_stride
         self.conv_padding = conv_kernel // 2
 
-        layers = []
+        layers: List[nn.Module] = []
         in_channels = input_dim
         for _ in range(n_conv):
             layers.append(

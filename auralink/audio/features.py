@@ -17,6 +17,9 @@ class LogMelFrontend(nn.Module):
     so checkpoints stay small and the module moves cleanly across devices.
     """
 
+    mel_fb: torch.Tensor
+    window: torch.Tensor
+
     def __init__(
         self,
         sample_rate: int = 16000,

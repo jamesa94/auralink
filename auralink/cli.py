@@ -10,6 +10,8 @@ import argparse
 import sys
 from typing import List, Optional
 
+import torch
+
 from auralink._version import __version__
 from auralink.audio.io import load_audio, synthetic_waveform
 from auralink.bridge.registry import list_connectors
@@ -44,7 +46,7 @@ def _build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def _load_or_synth(path: str, sample_rate: int) -> "object":
+def _load_or_synth(path: str, sample_rate: int) -> torch.Tensor:
     try:
         return load_audio(path, sample_rate)
     except Exception:

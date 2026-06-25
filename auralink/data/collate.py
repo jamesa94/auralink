@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Sequence, Tuple
+from typing import Any, Dict, List, Sequence, Tuple
 
 import torch
 
@@ -16,7 +16,7 @@ def _pad_waveforms(waveforms: Sequence[torch.Tensor]) -> Tuple[torch.Tensor, tor
     return padded, lengths
 
 
-def collate_captions(batch: List[Dict[str, object]], pad_id: int = 0) -> Dict[str, object]:
+def collate_captions(batch: List[Dict[str, Any]], pad_id: int = 0) -> Dict[str, object]:
     """Pad waveforms and caption token ids; build the text attention mask."""
     waveforms = [b["waveform"] for b in batch]
     wav, wav_lengths = _pad_waveforms(waveforms)
@@ -52,5 +52,5 @@ class CaptionCollator:
     def __init__(self, pad_id: int = 0) -> None:
         self.pad_id = pad_id
 
-    def __call__(self, batch: List[Dict[str, object]]) -> Dict[str, object]:
+    def __call__(self, batch: List[Dict[str, Any]]) -> Dict[str, object]:
         return collate_captions(batch, self.pad_id)
