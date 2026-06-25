@@ -7,19 +7,14 @@ from typing import Optional
 import torch
 import torch.nn as nn
 
-
-def _masked_mean(x: torch.Tensor, mask: Optional[torch.Tensor]) -> torch.Tensor:
-    if mask is None:
-        return x.mean(dim=1)
-    weights = mask.to(x.dtype).unsqueeze(-1)
-    return (x * weights).sum(dim=1) / weights.sum(dim=1).clamp_min(1e-9)
+from auralink.utils.masking import masked_mean
 
 
 class MeanPool(nn.Module):
     """Mask-aware average over the time axis."""
 
     def forward(self, x: torch.Tensor, mask: Optional[torch.Tensor] = None) -> torch.Tensor:
-        return _masked_mean(x, mask)
+        return masked_mean(x, mask, dim=1)
 
 
 class AttentivePool(nn.Module):

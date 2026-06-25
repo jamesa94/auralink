@@ -22,6 +22,16 @@ def lengths_to_mask(lengths: torch.Tensor, max_len: Optional[int] = None) -> tor
     return idx.unsqueeze(0) < lengths.unsqueeze(1)
 
 
+def masked_mean(
+    x: torch.Tensor, mask: Optional[torch.Tensor], dim: int = 1, eps: float = 1e-9
+) -> torch.Tensor:
+    """Average ``x`` over ``dim`` honouring a boolean ``mask`` (``True`` = valid)."""
+    if mask is None:
+        return x.mean(dim=dim)
+    weights = mask.to(x.dtype).unsqueeze(-1)
+    return (x * weights).sum(dim=dim) / weights.sum(dim=dim).clamp_min(eps)
+
+
 def conv_output_length(length: int, kernel: int, stride: int, padding: int) -> int:
     """Length of a 1-D convolution output (floor division, as in PyTorch)."""
     return (length + 2 * padding - kernel) // stride + 1
