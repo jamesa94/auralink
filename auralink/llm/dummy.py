@@ -63,9 +63,10 @@ class TinyDecoderLM(LanguageModel):
         return self.token_emb(input_ids)
 
     def _causal_mask(self, seq_len: int, device: torch.device) -> torch.Tensor:
-        # True marks positions that are NOT allowed to be attended to.
+        # True marks positions that are NOT allowed to be attended to. A token
+        # may attend to itself and everything before it, hence diagonal=1.
         ones = torch.ones(seq_len, seq_len, dtype=torch.bool, device=device)
-        return torch.triu(ones, diagonal=0)
+        return torch.triu(ones, diagonal=1)
 
     def forward(
         self,
