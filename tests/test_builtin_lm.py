@@ -1,6 +1,6 @@
 import torch
 
-from auralink.llm.dummy import TinyDecoderLM
+from auralink.llm.builtin_lm import TinyDecoderLM
 from auralink.llm.tokenizer import CharTokenizer
 from auralink.utils.seed import set_seed
 
